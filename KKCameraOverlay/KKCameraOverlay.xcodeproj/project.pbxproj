@@ -21,8 +21,9 @@
 		4F103B641978EC9E00EEAD57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B461978EC9E00EEAD57 /* UIKit.framework */; };
 		4F103B6C1978EC9E00EEAD57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F103B6A1978EC9E00EEAD57 /* InfoPlist.strings */; };
 		4F103B6E1978EC9E00EEAD57 /* KKCameraOverlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F103B6D1978EC9E00EEAD57 /* KKCameraOverlayTests.m */; };
-		4F103B7A1978ECCA00EEAD57 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F103B781978ECCA00EEAD57 /* OverlayView.m */; };
-		4F103B7F1978F1E800EEAD57 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F103B7E1978F1E800EEAD57 /* OverlayView.xib */; };
+		4FA7D684197EAA59002FCBCF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA7D683197EAA59002FCBCF /* AVFoundation.framework */; };
+		4FA7D688197EAD97002FCBCF /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7D686197EAD97002FCBCF /* CameraViewController.m */; };
+		4FA7D689197EAD97002FCBCF /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FA7D687197EAD97002FCBCF /* CameraViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,9 +56,10 @@
 		4F103B691978EC9E00EEAD57 /* KKCameraOverlayTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KKCameraOverlayTests-Info.plist"; sourceTree = "<group>"; };
 		4F103B6B1978EC9E00EEAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F103B6D1978EC9E00EEAD57 /* KKCameraOverlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KKCameraOverlayTests.m; sourceTree = "<group>"; };
-		4F103B771978ECCA00EEAD57 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
-		4F103B781978ECCA00EEAD57 /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
-		4F103B7E1978F1E800EEAD57 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		4FA7D683197EAA59002FCBCF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4FA7D685197EAD97002FCBCF /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		4FA7D686197EAD97002FCBCF /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		4FA7D687197EAD97002FCBCF /* CameraViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA7D684197EAA59002FCBCF /* AVFoundation.framework in Frameworks */,
 				4F103B451978EC9E00EEAD57 /* CoreGraphics.framework in Frameworks */,
 				4F103B471978EC9E00EEAD57 /* UIKit.framework in Frameworks */,
 				4F103B431978EC9E00EEAD57 /* Foundation.framework in Frameworks */,
@@ -106,6 +109,7 @@
 		4F103B411978EC9E00EEAD57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FA7D683197EAA59002FCBCF /* AVFoundation.framework */,
 				4F103B421978EC9E00EEAD57 /* Foundation.framework */,
 				4F103B441978EC9E00EEAD57 /* CoreGraphics.framework */,
 				4F103B461978EC9E00EEAD57 /* UIKit.framework */,
@@ -117,9 +121,6 @@
 		4F103B481978EC9E00EEAD57 /* KKCameraOverlay */ = {
 			isa = PBXGroup;
 			children = (
-				4F103B771978ECCA00EEAD57 /* OverlayView.h */,
-				4F103B781978ECCA00EEAD57 /* OverlayView.m */,
-				4F103B7E1978F1E800EEAD57 /* OverlayView.xib */,
 				4F103B511978EC9E00EEAD57 /* AppDelegate.h */,
 				4F103B521978EC9E00EEAD57 /* AppDelegate.m */,
 				4F103B541978EC9E00EEAD57 /* Main.storyboard */,
@@ -127,6 +128,9 @@
 				4F103B581978EC9E00EEAD57 /* ViewController.m */,
 				4F103B5A1978EC9E00EEAD57 /* Images.xcassets */,
 				4F103B491978EC9E00EEAD57 /* Supporting Files */,
+				4FA7D685197EAD97002FCBCF /* CameraViewController.h */,
+				4FA7D686197EAD97002FCBCF /* CameraViewController.m */,
+				4FA7D687197EAD97002FCBCF /* CameraViewController.xib */,
 			);
 			path = KKCameraOverlay;
 			sourceTree = "<group>";
@@ -237,7 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F103B5B1978EC9E00EEAD57 /* Images.xcassets in Resources */,
-				4F103B7F1978F1E800EEAD57 /* OverlayView.xib in Resources */,
+				4FA7D689197EAD97002FCBCF /* CameraViewController.xib in Resources */,
 				4F103B4D1978EC9E00EEAD57 /* InfoPlist.strings in Resources */,
 				4F103B561978EC9E00EEAD57 /* Main.storyboard in Resources */,
 			);
@@ -259,7 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F103B591978EC9E00EEAD57 /* ViewController.m in Sources */,
-				4F103B7A1978ECCA00EEAD57 /* OverlayView.m in Sources */,
+				4FA7D688197EAD97002FCBCF /* CameraViewController.m in Sources */,
 				4F103B531978EC9E00EEAD57 /* AppDelegate.m in Sources */,
 				4F103B4F1978EC9E00EEAD57 /* main.m in Sources */,
 			);

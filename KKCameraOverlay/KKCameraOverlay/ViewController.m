@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "OverlayView.h"
+#import "CameraViewController.h"
 
 @interface ViewController ()
 
@@ -36,30 +36,10 @@
         [noCameraAlert show];
         
     } else {
-        OverlayView *overlayView = nil;
-        NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"OverlayView" owner:self options:nil];
-
-        for (id oneObject in nib) {
-            if ([oneObject isKindOfClass:[OverlayView class]]){
-                overlayView = (OverlayView *)oneObject;
-            }
-        }
+        CameraViewController *target = [[CameraViewController alloc]initWithNibName:@"CameraViewController" bundle:nil];
+        UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:target];
         
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-        picker.delegate = self;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        picker.allowsEditing = NO;
-        picker.showsCameraControls = NO;
-        overlayView.frame = picker.view.frame;
-        picker.cameraOverlayView = overlayView;
-        
-        [picker setNavigationBarHidden:NO animated:YES];
-//        [picker pushViewController:vc animated:YES];
-
-        [self presentViewController:picker animated:YES completion:nil];
+        [self presentViewController:nc animated:YES completion:nil];
     }
 }
 
