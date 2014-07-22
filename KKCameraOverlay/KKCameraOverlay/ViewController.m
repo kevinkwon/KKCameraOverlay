@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self performSelector:@selector(registerButtonPressed:) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(registerButtonPressed:) withObject:nil afterDelay:0.5];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +45,9 @@
             }
         }
         
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        
         UIImagePickerController *picker = [[UIImagePickerController alloc]init];
         picker.delegate = self;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -53,8 +56,10 @@
         overlayView.frame = picker.view.frame;
         picker.cameraOverlayView = overlayView;
         
-        UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:picker];
-        [self presentViewController:nc animated:YES completion:nil];
+        [picker setNavigationBarHidden:NO animated:YES];
+//        [picker pushViewController:vc animated:YES];
+
+        [self presentViewController:picker animated:YES completion:nil];
     }
 }
 
