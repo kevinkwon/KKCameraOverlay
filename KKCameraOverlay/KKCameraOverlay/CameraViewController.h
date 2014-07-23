@@ -8,19 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "CaptureSessionManager.h"
 
 @interface CameraViewController : UIViewController
+@property (strong) CaptureSessionManager *captureManager;
 
-@property (strong, nonatomic) IBOutlet UIView *previewView;
+@property (weak, nonatomic) IBOutlet UIView *previewView;
 - (IBAction)switchCamera:(id)sender;
-
-@property (strong, nonatomic) AVCaptureSession *session;
-@property (strong) AVCaptureDevice *videoDevice;
-@property (strong) AVCaptureDeviceInput *videoInput;
-@property (strong) AVCaptureStillImageOutput *stillImageOutput;
-@property BOOL isUsingFrontFacingCamera;
-
-- (AVCaptureDevice *) backCamera;
-- (AVCaptureDevice *) frontCamera;
-
+- (IBAction)captureStillImage:(id)sender;
 @end
