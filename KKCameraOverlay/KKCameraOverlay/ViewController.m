@@ -39,29 +39,8 @@
         CameraViewController *target = [[CameraViewController alloc]initWithNibName:@"CameraViewController" bundle:nil];
         UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:target];
         
-        [self presentViewController:nc animated:YES completion:nil];
+        [self presentViewController:nc animated:NO completion:nil];
     }
 }
-
-#pragma mark - UIImagePickerController Delegate Method
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo NS_DEPRECATED_IOS(2_0, 3_0)
-{
-    NSLog(@"이미지 피킹 완료%@", image);
-    NSLog(@"editingInfo:%@", editingInfo);
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSLog(@"동영상선택됨");
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    NSLog(@"취소됨");
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 @end

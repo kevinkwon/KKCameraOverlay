@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 - (IBAction)registerButtonPressed:(id)sender;

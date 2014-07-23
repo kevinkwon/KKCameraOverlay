@@ -14,6 +14,6 @@
 @property (strong) CaptureSessionManager *captureManager;
 
 @property (weak, nonatomic) IBOutlet UIView *previewView;
-- (IBAction)switchCamera:(id)sender;
 - (IBAction)captureStillImage:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *captureButton;
 @end

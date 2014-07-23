@@ -9,19 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-extern NSString *const kImageCapturedSuccessfully;
+typedef void (^CaptureSessionManagerDidCaptureSuccess_t)(UIImage *image);
 
 @interface CaptureSessionManager : NSObject
 
-@property (strong) AVCaptureVideoPreviewLayer *previewLayer;
-@property (strong) AVCaptureSession *captureSession;
-@property (strong) AVCaptureStillImageOutput *stillImageOutput;
+@property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
+@property (strong, nonatomic) AVCaptureSession *captureSession;
+@property (strong, nonatomic) AVCaptureStillImageOutput *stillImageOutput;
 @property (nonatomic, strong) UIImage *stillImage;
 @property BOOL isUsingFrontFacingCamera;
 
 - (void)addVideoPreviewLayer;
 - (void)addStillImageOutput;
-- (void)captureStillImage;
+- (void)captureStillImage:(CaptureSessionManagerDidCaptureSuccess_t)success;
 - (void)addVideoInputFrontCamera:(BOOL)front;
 
 - (void)switchCamera;

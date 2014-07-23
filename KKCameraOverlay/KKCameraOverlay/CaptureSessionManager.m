@@ -9,8 +9,6 @@
 #import "CaptureSessionManager.h"
 #import <ImageIO/ImageIO.h>
 
-NSString *const kImageCapturedSuccessfully = @"imageCapturedSuccessfully";
-
 @implementation CaptureSessionManager
 
 #pragma mark Capture Session Configuration
@@ -114,8 +112,12 @@ NSString *const kImageCapturedSuccessfully = @"imageCapturedSuccessfully";
 {
     self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
 
-    NSDictionary *outputSettingInfo = @{AVVideoCodecKey:AVVideoCodecJPEG, AVVideoWidthKey:@1920, AVVideoHeightKey:@1920};
-    [[self stillImageOutput] setOutputSettings:outputSettingInfo];
+    NSDictionary *pixelAspectRatio = @{AVVideoPixelAspectRatioHorizontalSpacingKey:@1.0, AVVideoPixelAspectRatioVerticalSpacingKey:@1.0f};
+    NSDictionary *outputSettingInfo = @{AVVideoCodecKey:AVVideoCodecJPEG
+//                                        , AVVideoWidthKey:@800
+//                                        , AVVideoHeightKey:@800
+                                        , AVVideoPixelAspectRatioKey:pixelAspectRatio};
+    [self.stillImageOutput setOutputSettings:outputSettingInfo];
     
     AVCaptureConnection *videoConnection = nil;
     for (AVCaptureConnection *connection in [self.stillImageOutput connections]) {
@@ -133,7 +135,7 @@ NSString *const kImageCapturedSuccessfully = @"imageCapturedSuccessfully";
     [self.captureSession addOutput:self.stillImageOutput];
 }
 
-- (void)captureStillImage
+- (void)captureStillImage:(CaptureSessionManagerDidCaptureSuccess_t)success
 {
 	AVCaptureConnection *videoConnection = nil;
 	for (AVCaptureConnection *connection in [self.stillImageOutput connections]) {
@@ -157,16 +159,61 @@ NSString *const kImageCapturedSuccessfully = @"imageCapturedSuccessfully";
                                                              } else {
                                                                  NSLog(@"no attachments");
                                                              }
+                                                             
                                                              NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
                                                              UIImage *image = [[UIImage alloc] initWithData:imageData];
-                                                             self.stillImage = image;
+                                                             image = [self squareImageWithImage:image scaledToSize:CGSizeMake(1920, 1920)];
                                                              // [image release];
-                                                             [[NSNotificationCenter defaultCenter] postNotificationName:kImageCapturedSuccessfully object:nil];
+                                                             // [[NSNotificationCenter defaultCenter] postNotificationName:kImageCapturedSuccessfully object:nil];
+                                                             if (success) {
+                                                                 success(image);
+                                                             }
                                                          }];
 }
 
 - (void)dealloc {
 	[self.captureSession stopRunning];
+}
+
+- (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    double ratio;
+    double delta;
+    CGPoint offset;
+    
+    //make a new square size, that is the resized imaged width
+    CGSize sz = CGSizeMake(newSize.width, newSize.width);
+    
+    //figure out if the picture is landscape or portrait, then
+    //calculate scale factor and offset
+    if (image.size.width > image.size.height) {
+        ratio = newSize.width / image.size.width;
+        delta = (ratio*image.size.width - ratio*image.size.height);
+        offset = CGPointMake(delta/2, 0);
+    } else {
+        ratio = newSize.width / image.size.height;
+        delta = (ratio*image.size.height - ratio*image.size.width);
+        offset = CGPointMake(0, delta/2);
+    }
+    
+    //make the final clipping rect based on the calculated values
+    CGRect clipRect = CGRectMake(-offset.x, -offset.y,
+                                 (ratio * image.size.width) + delta,
+                                 (ratio * image.size.height) + delta);
+    
+    
+    //start a new context, with scale factor 0.0 so retina displays get
+    //high quality image
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(sz, YES, 0.0);
+    } else {
+        UIGraphicsBeginImageContext(sz);
+    }
+    UIRectClip(clipRect);
+    [image drawInRect:clipRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end

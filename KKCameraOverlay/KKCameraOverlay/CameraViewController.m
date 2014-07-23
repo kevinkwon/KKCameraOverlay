@@ -27,6 +27,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"아이템 사진을 등록하세요";
+    
+    if (!self.captureManager) {
+        self.captureManager = [[CaptureSessionManager alloc]init];
+        [self.captureManager addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
+        [self.captureManager addStillImageOutput];
+        [self.captureManager addVideoPreviewLayer];
+    }
+    self.captureManager.previewLayer.frame = self.previewView.layer.bounds;
+    self.captureManager.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    
+    [self.previewView.layer addSublayer:self.captureManager.previewLayer];
+    
+	[[self.captureManager captureSession] startRunning];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,45 +52,11 @@
 // Run session setup after subviews are laid out.
 - (void)viewDidLayoutSubviews
 {
-    
-    self.captureManager = [[CaptureSessionManager alloc]init];
-    [self.captureManager addVideoInputFrontCamera:NO]; // set to YES for Front Camera, No for Back camera
-    [self.captureManager addStillImageOutput];
-    [self.captureManager addVideoPreviewLayer];
-    
-	CGRect layerRect = self.previewView.layer.bounds;
-    self.captureManager.previewLayer.bounds = layerRect;
-    [[[self captureManager] previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),CGRectGetMidY(layerRect))];
-	[[[self view] layer] addSublayer:[[self captureManager] previewLayer]];
-    
-//    UIImageView *overlayImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"overlaygraphic.png"]];
-//    [overlayImageView setFrame:CGRectMake(30, 100, 260, 200)];
-//    [[self view] addSubview:overlayImageView];
-    
-//    UIButton *overlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [overlayButton setImage:[UIImage imageNamed:@"scanbutton.png"] forState:UIControlStateNormal];
-//    [overlayButton setFrame:CGRectMake(130, 320, 60, 30)];
-//    [overlayButton addTarget:self action:@selector(scanButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-//    [[self view] addSubview:overlayButton];
-    
-//    UILabel *tempLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 120, 30)];
-//    [self setScanningLabel:tempLabel];
-//    [tempLabel release];
-//	[scanningLabel setBackgroundColor:[UIColor clearColor]];
-//	[scanningLabel setFont:[UIFont fontWithName:@"Courier" size: 18.0]];
-//	[scanningLabel setTextColor:[UIColor redColor]];
-//	[scanningLabel setText:@"Saving..."];
-//    [scanningLabel setHidden:YES];
-//	[[self view] addSubview:scanningLabel];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImageToPhotoAlbum) name:kImageCapturedSuccessfully object:nil];
-    
-	[[self.captureManager captureSession] startRunning];
 }
 
-- (void)saveImageToPhotoAlbum
+- (void)saveImageToPhotoAlbum:(UIImage *)image
 {
-    UIImageWriteToSavedPhotosAlbum([[self captureManager] stillImage], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
@@ -89,36 +69,11 @@
 }
 
 - (IBAction)captureStillImage:(id)sender {
-
+    self.captureButton.enabled = NO;
+    [self.captureManager captureStillImage:^(UIImage *image) {
+        [self saveImageToPhotoAlbum:image];
+        self.captureButton.enabled = YES;
+    }];
 }
 
-/* 다른 방법
- // Run session setup after subviews are laid out.
- - (void)viewDidLayoutSubviews
- {
- // Create AVCaptureSession and set the quality of the output
- self.session = [[AVCaptureSession alloc] init];
- self.session.sessionPreset = AVCaptureSessionPresetPhoto;
- 
- // Get the Back Camera Device, init a AVCaptureDeviceInput linking the Device and add the input to the session.
- self.videoDevice = [self backCamera];
- self.videoInput = [AVCaptureDeviceInput deviceInputWithDevice:self.videoDevice error:nil];
- [self.session addInput:self.videoInput];
- 
- // Insert code to add still image output here
- 
- // Init the AVCaptureVideoPreviewLayer with our created session. Get the UIView layer
- AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
- CALayer *viewLayer = self.previewView.layer;
- 
- // Set the AVCaptureVideoPreviewLayer bounds to the main view bounds and fill it accordingly. Add as sublayer to the main UIView
- [viewLayer setMasksToBounds:YES];
- captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
- captureVideoPreviewLayer.frame = [viewLayer bounds];
- [viewLayer addSublayer:captureVideoPreviewLayer];
- 
- // Start Running the Session
- [self.session startRunning];
- }
- */
 @end
