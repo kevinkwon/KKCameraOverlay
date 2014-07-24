@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self performSelector:@selector(registerButtonPressed:) withObject:nil afterDelay:0.5];
+//    [self performSelector:@selector(registerButtonPressed:) withObject:nil afterDelay:0.5];
 }
 
 - (void)didReceiveMemoryWarning

@@ -162,7 +162,7 @@
                                                              
                                                              NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
                                                              UIImage *image = [[UIImage alloc] initWithData:imageData];
-                                                             image = [self squareImageWithImage:image scaledToSize:CGSizeMake(1920, 1920)];
+                                                             image = [self squareImageWithImage:image scaledToSize:CGSizeMake(640, 640)];
                                                              // [image release];
                                                              // [[NSNotificationCenter defaultCenter] postNotificationName:kImageCapturedSuccessfully object:nil];
                                                              if (success) {

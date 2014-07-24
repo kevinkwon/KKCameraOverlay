@@ -6,7 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController">
             <connections>
-                <outlet property="previewView" destination="eHy-m7-B2P" id="dPu-Qu-K36"/>
+                <outlet property="albumButton" destination="iwK-wN-gkG" id="1qp-Z2-Fd6"/>
+                <outlet property="captureButton" destination="mz1-Xz-6sl" id="Uu2-qz-ZL0"/>
+                <outlet property="flashButton" destination="EYq-8N-Asz" id="Zig-vx-SA9"/>
+                <outlet property="imageScrollView" destination="boY-E4-2jb" id="CRb-7V-Ybe"/>
+                <outlet property="previewImageView" destination="eHy-m7-B2P" id="vXP-7G-qRD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,16 +19,45 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="eHy-m7-B2P">
-                    <rect key="frame" x="5" y="119" width="310" height="310"/>
+                <view contentMode="scaleToFill" id="eHy-m7-B2P" customClass="UIImageView">
+                    <rect key="frame" x="5" y="114" width="310" height="310"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="boY-E4-2jb">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="boY-E4-2jb" customClass="KKImageScrollView">
                     <rect key="frame" x="0.0" y="64" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mz1-Xz-6sl">
+                    <rect key="frame" x="137" y="442" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="촬영">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="captureButtonPressed:" destination="-1" eventType="touchUpInside" id="Gol-aB-BZ4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iwK-wN-gkG">
+                    <rect key="frame" x="5" y="442" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="앨범">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="albumButtonPressed:" destination="-1" eventType="touchUpInside" id="uBF-8w-ICO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EYq-8N-Asz">
+                    <rect key="frame" x="269" y="442" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="플래쉬">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="flashButtonPressed:" destination="-1" eventType="touchUpInside" id="kLi-nW-jTJ"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

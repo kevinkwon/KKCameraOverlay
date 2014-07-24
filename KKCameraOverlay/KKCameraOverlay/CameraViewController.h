@@ -9,11 +9,31 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "CaptureSessionManager.h"
+#import "ItemForPost.h"
+#import "KKImageScrollView.h"
 
-@interface CameraViewController : UIViewController
-@property (strong) CaptureSessionManager *captureManager;
+@interface CameraViewController : UIViewController <KKImageScrollViewDelegate>
+{
+}
 
-@property (weak, nonatomic) IBOutlet UIView *previewView;
-- (IBAction)captureStillImage:(id)sender;
+@property (strong, nonatomic) ItemForPost *item;
+
+@property (strong, nonatomic) CaptureSessionManager *captureManager;
+
+@property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
+
+@property (weak, nonatomic) IBOutlet KKImageScrollView *imageScrollView;
+
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
+
+- (IBAction)captureButtonPressed:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *flashButton;
+
+- (IBAction)flashButtonPressed:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *albumButton;
+
+- (IBAction)albumButtonPressed:(id)sender;
+
 @end

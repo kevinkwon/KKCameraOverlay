@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0AA19A1980E307007A86E6 /* KKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0AA1991980E307007A86E6 /* KKImageScrollView.m */; };
 		4F103B431978EC9E00EEAD57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B421978EC9E00EEAD57 /* Foundation.framework */; };
 		4F103B451978EC9E00EEAD57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B441978EC9E00EEAD57 /* CoreGraphics.framework */; };
 		4F103B471978EC9E00EEAD57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B461978EC9E00EEAD57 /* UIKit.framework */; };
@@ -22,6 +23,8 @@
 		4F103B6C1978EC9E00EEAD57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F103B6A1978EC9E00EEAD57 /* InfoPlist.strings */; };
 		4F103B6E1978EC9E00EEAD57 /* KKCameraOverlayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F103B6D1978EC9E00EEAD57 /* KKCameraOverlayTests.m */; };
 		4F9495F4197F790D00EA35BC /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9495F3197F790D00EA35BC /* CaptureSessionManager.m */; };
+		4F9496021980942800EA35BC /* ItemForPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9496011980942800EA35BC /* ItemForPost.m */; };
+		4F9496091980A80500EA35BC /* KKSandboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9496081980A80500EA35BC /* KKSandboxManager.m */; };
 		4FA7D684197EAA59002FCBCF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA7D683197EAA59002FCBCF /* AVFoundation.framework */; };
 		4FA7D688197EAD97002FCBCF /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7D686197EAD97002FCBCF /* CameraViewController.m */; };
 		4FA7D689197EAD97002FCBCF /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FA7D687197EAD97002FCBCF /* CameraViewController.xib */; };
@@ -38,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F0AA1981980E307007A86E6 /* KKImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageScrollView.h; sourceTree = "<group>"; };
+		4F0AA1991980E307007A86E6 /* KKImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKImageScrollView.m; sourceTree = "<group>"; };
 		4F103B3F1978EC9E00EEAD57 /* KKCameraOverlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKCameraOverlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F103B421978EC9E00EEAD57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4F103B441978EC9E00EEAD57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,6 +64,10 @@
 		4F103B6D1978EC9E00EEAD57 /* KKCameraOverlayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KKCameraOverlayTests.m; sourceTree = "<group>"; };
 		4F9495F2197F790D00EA35BC /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
 		4F9495F3197F790D00EA35BC /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
+		4F9496001980942800EA35BC /* ItemForPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemForPost.h; sourceTree = "<group>"; };
+		4F9496011980942800EA35BC /* ItemForPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemForPost.m; sourceTree = "<group>"; };
+		4F9496071980A80500EA35BC /* KKSandboxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKSandboxManager.h; sourceTree = "<group>"; };
+		4F9496081980A80500EA35BC /* KKSandboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKSandboxManager.m; sourceTree = "<group>"; };
 		4FA7D683197EAA59002FCBCF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4FA7D685197EAD97002FCBCF /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		4FA7D686197EAD97002FCBCF /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
@@ -136,6 +145,12 @@
 				4FA7D687197EAD97002FCBCF /* CameraViewController.xib */,
 				4F9495F2197F790D00EA35BC /* CaptureSessionManager.h */,
 				4F9495F3197F790D00EA35BC /* CaptureSessionManager.m */,
+				4F9496001980942800EA35BC /* ItemForPost.h */,
+				4F9496011980942800EA35BC /* ItemForPost.m */,
+				4F9496071980A80500EA35BC /* KKSandboxManager.h */,
+				4F9496081980A80500EA35BC /* KKSandboxManager.m */,
+				4F0AA1981980E307007A86E6 /* KKImageScrollView.h */,
+				4F0AA1991980E307007A86E6 /* KKImageScrollView.m */,
 			);
 			path = KKCameraOverlay;
 			sourceTree = "<group>";
@@ -268,7 +283,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F103B591978EC9E00EEAD57 /* ViewController.m in Sources */,
+				4F0AA19A1980E307007A86E6 /* KKImageScrollView.m in Sources */,
 				4FA7D688197EAD97002FCBCF /* CameraViewController.m in Sources */,
+				4F9496021980942800EA35BC /* ItemForPost.m in Sources */,
+				4F9496091980A80500EA35BC /* KKSandboxManager.m in Sources */,
 				4F9495F4197F790D00EA35BC /* CaptureSessionManager.m in Sources */,
 				4F103B531978EC9E00EEAD57 /* AppDelegate.m in Sources */,
 				4F103B4F1978EC9E00EEAD57 /* main.m in Sources */,
