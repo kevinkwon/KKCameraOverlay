@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "CaptureSessionManager.h"
+#import "KKCaptureSessionManager.h"
 #import "ItemForPost.h"
 #import "KKImageScrollView.h"
 
@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) ItemForPost *item;
 
-@property (strong, nonatomic) CaptureSessionManager *captureManager;
+@property (strong, nonatomic) KKCaptureSessionManager *captureManager;
 
 @property (weak, nonatomic) IBOutlet UIImageView *previewImageView;
 
@@ -36,4 +36,13 @@
 
 - (IBAction)albumButtonPressed:(id)sender;
 
+@property (assign, nonatomic, getter = isPreviewMode) BOOL previewMode; // 이미지 보고 있는 모드
+
+@property (weak, nonatomic) IBOutlet UIButton *deleteImageButton;
+
+- (IBAction)deleteImageButtonPressed:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *cancelPreviewModeButton;
+
+- (IBAction)cancelPreviewModeButtonPressed:(UIButton *)sender;
 @end

@@ -11,7 +11,7 @@
 @class KKImageScrollView;
 @protocol KKImageScrollViewDelegate <UIScrollViewDelegate>
 
-- (void)KKImageScrollView:(KKImageScrollView *)view selectedImage:(UIImage *)image;
+- (void)KKImageScrollView:(KKImageScrollView *)view selectedImageView:(UIImageView *)imageView;
 
 @end
 
@@ -23,5 +23,7 @@
 
 - (void)addImage:(UIImage *)image;
 - (void)removeImageAtIndex:(NSInteger)index;
+
+- (void)resetImageLayer;
 
 @end

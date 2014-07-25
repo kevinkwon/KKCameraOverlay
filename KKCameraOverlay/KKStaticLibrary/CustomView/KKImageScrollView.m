@@ -136,15 +136,21 @@
         if (CGRectContainsPoint(imageView.frame, touchPoint)) {
             imageView.layer.borderColor = [[UIColor redColor]CGColor];
             imageView.layer.borderWidth = 1.0;
-            [self.delegate KKImageScrollView:self selectedImage:imageView.image];
+            [self.delegate KKImageScrollView:self selectedImageView:imageView];
         }
         else {
             imageView.layer.borderColor = [[UIColor redColor]CGColor];
             imageView.layer.borderWidth = 0.0;
         }
     }
-    
-         
+}
+
+- (void)resetImageLayer
+{
+    for (UIImageView *imageView in self.images) {
+        imageView.layer.borderColor = [[UIColor redColor]CGColor];
+        imageView.layer.borderWidth = 0.0;
+    }
 }
 
 @end

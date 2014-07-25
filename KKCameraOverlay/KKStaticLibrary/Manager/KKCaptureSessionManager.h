@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-typedef void (^CaptureSessionManagerDidCaptureSuccess_t)(UIImage *image);
+typedef void (^KKCaptureSessionManagerDidCaptureSuccess_t)(UIImage *image);
 
-@interface CaptureSessionManager : NSObject
+@interface KKCaptureSessionManager : NSObject
 
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
 @property (strong, nonatomic) AVCaptureSession *captureSession;
@@ -21,7 +21,7 @@ typedef void (^CaptureSessionManagerDidCaptureSuccess_t)(UIImage *image);
 
 - (void)addVideoPreviewLayer;
 - (void)addStillImageOutput;
-- (void)captureStillImage:(CaptureSessionManagerDidCaptureSuccess_t)success;
+- (void)captureStillImage:(KKCaptureSessionManagerDidCaptureSuccess_t)success;
 - (void)addVideoInputFrontCamera:(BOOL)front;
 
 - (void)switchCamera;

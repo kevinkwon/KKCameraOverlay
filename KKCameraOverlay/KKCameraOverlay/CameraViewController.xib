@@ -7,7 +7,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController">
             <connections>
                 <outlet property="albumButton" destination="iwK-wN-gkG" id="1qp-Z2-Fd6"/>
+                <outlet property="cancelPreviewModeButton" destination="Zr2-2g-vQh" id="MDQ-yb-Obf"/>
                 <outlet property="captureButton" destination="mz1-Xz-6sl" id="Uu2-qz-ZL0"/>
+                <outlet property="deleteImageButton" destination="goz-b1-S20" id="hsv-1x-Yfj"/>
                 <outlet property="flashButton" destination="EYq-8N-Asz" id="Zig-vx-SA9"/>
                 <outlet property="imageScrollView" destination="boY-E4-2jb" id="CRb-7V-Ybe"/>
                 <outlet property="previewImageView" destination="eHy-m7-B2P" id="vXP-7G-qRD"/>
@@ -19,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="eHy-m7-B2P" customClass="UIImageView">
+                <view contentMode="scaleToFill" id="eHy-m7-B2P" userLabel="Preview Image View" customClass="UIImageView">
                     <rect key="frame" x="5" y="114" width="310" height="310"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,5 +66,27 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="goz-b1-S20">
+            <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+            <state key="normal" title="사진삭제">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <connections>
+                <action selector="deleteImageButtonPressed:" destination="-1" eventType="touchUpInside" id="CCd-GB-Yru"/>
+            </connections>
+        </button>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zr2-2g-vQh">
+            <rect key="frame" x="0.0" y="0.0" width="73" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+            <state key="normal" title="사진추가">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <connections>
+                <action selector="cancelPreviewModeButtonPressed:" destination="-1" eventType="touchUpInside" id="mRm-ie-20S"/>
+            </connections>
+        </button>
     </objects>
 </document>
