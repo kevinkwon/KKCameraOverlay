@@ -13,7 +13,6 @@
 		4F0AA1C71981F951007A86E6 /* KKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0AA1BB1981F951007A86E6 /* KKImageScrollView.m */; };
 		4F0AA1C81981F951007A86E6 /* KKCaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0AA1BE1981F951007A86E6 /* KKCaptureSessionManager.m */; };
 		4F0AA1C91981F951007A86E6 /* KKSandboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0AA1C01981F951007A86E6 /* KKSandboxManager.m */; };
-		4F0AA1CA1981F951007A86E6 /* KKImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0AA1C31981F951007A86E6 /* KKImageUtil.m */; };
 		4F103B431978EC9E00EEAD57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B421978EC9E00EEAD57 /* Foundation.framework */; };
 		4F103B451978EC9E00EEAD57 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B441978EC9E00EEAD57 /* CoreGraphics.framework */; };
 		4F103B471978EC9E00EEAD57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F103B461978EC9E00EEAD57 /* UIKit.framework */; };
@@ -58,8 +57,6 @@
 		4F0AA1BE1981F951007A86E6 /* KKCaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKCaptureSessionManager.m; sourceTree = "<group>"; };
 		4F0AA1BF1981F951007A86E6 /* KKSandboxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKSandboxManager.h; sourceTree = "<group>"; };
 		4F0AA1C01981F951007A86E6 /* KKSandboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKSandboxManager.m; sourceTree = "<group>"; };
-		4F0AA1C21981F951007A86E6 /* KKImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKImageUtil.h; sourceTree = "<group>"; };
-		4F0AA1C31981F951007A86E6 /* KKImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKImageUtil.m; sourceTree = "<group>"; };
 		4F103B3F1978EC9E00EEAD57 /* KKCameraOverlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKCameraOverlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F103B421978EC9E00EEAD57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4F103B441978EC9E00EEAD57 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -118,7 +115,6 @@
 				4F0AA1B21981F951007A86E6 /* Category */,
 				4F0AA1B91981F951007A86E6 /* CustomView */,
 				4F0AA1BC1981F951007A86E6 /* Manager */,
-				4F0AA1C11981F951007A86E6 /* Util */,
 			);
 			path = KKStaticLibrary;
 			sourceTree = "<group>";
@@ -154,15 +150,6 @@
 				4F0AA1C01981F951007A86E6 /* KKSandboxManager.m */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		4F0AA1C11981F951007A86E6 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				4F0AA1C21981F951007A86E6 /* KKImageUtil.h */,
-				4F0AA1C31981F951007A86E6 /* KKImageUtil.m */,
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 		4F103B361978EC9E00EEAD57 = {
@@ -355,7 +342,6 @@
 				4F103B4F1978EC9E00EEAD57 /* main.m in Sources */,
 				4F0AA1C51981F951007A86E6 /* UIImage+Resize.m in Sources */,
 				4F0AA1C91981F951007A86E6 /* KKSandboxManager.m in Sources */,
-				4F0AA1CA1981F951007A86E6 /* KKImageUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

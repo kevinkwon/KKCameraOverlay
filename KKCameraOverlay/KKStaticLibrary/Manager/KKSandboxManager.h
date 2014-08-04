@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, KKSandboxType) {
     KKSandBoxTypeDocuments = 1,
@@ -29,6 +30,8 @@ typedef NS_ENUM(NSInteger, KKSandboxType) {
 - (NSData *)readData:(NSString *)fileName directoryType:(KKSandboxType)sandBoxType;
 
 - (NSData *)dataFromImage:(UIImage *)image compressionQuality:(CGFloat)quality extention:(NSString *)extension;
+
+- (BOOL)removeFileName:(NSString *)fileName directoryType:(KKSandboxType)sandBoxType;
 
 - (BOOL)removeDirectory:(KKSandboxType)sandboxType;
 

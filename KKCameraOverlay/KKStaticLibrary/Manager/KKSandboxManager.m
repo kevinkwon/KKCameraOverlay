@@ -63,7 +63,7 @@ static KKSandboxManager *sharedInstance = nil;
     
     if (type == KKSandBoxTypeLibraryCacheItemImagesForPost) {
         directory = [directory stringByAppendingPathComponent:@"itemImagesForPost"];
-
+        
         NSFileManager *manager = [NSFileManager defaultManager];
         if (![manager fileExistsAtPath:directory]) {
             [manager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:NULL];
@@ -104,8 +104,17 @@ static KKSandboxManager *sharedInstance = nil;
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *directory = [self directoryForType:sandboxType];
 	// NSArray *files = [manager contentsOfDirectoryAtPath:directory error:NULL];
-
+    
     return [manager removeItemAtPath:directory error:NULL];
 }
+
+- (BOOL)removeFileName:(NSString *)fileName directoryType:(KKSandboxType)sandBoxType
+{
+	NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *targetDirectory = [self directoryForType:sandBoxType];
+    NSString *targetFilePath = [targetDirectory stringByAppendingPathComponent:fileName];
+    return [manager removeItemAtPath:targetFilePath error:NULL];
+}
+
 
 @end
