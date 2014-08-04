@@ -83,14 +83,14 @@
             _label.alpha = 0;
             _label.transform = CGAffineTransformMakeTranslation(0, 10.0f);
         }
-    } completion:^(BOOL finished) {
+        
         if (CGRectGetMaxX(imageView.frame) <= CGRectGetWidth(self.frame) - kMARGIN) {
             self.contentSize = self.bounds.size;
         }
         else {
             self.contentSize = CGSizeMake(CGRectGetMaxX(imageView.frame) + kMARGIN, CGRectGetHeight(self.frame));
         }
-    }];
+    } completion:nil];
     
     [self.images addObject:imageView];
 }
@@ -101,22 +101,44 @@
         return;
     }
     
-    UIImageView *removeImageView = self.images [index];
-    
     // scrollView에서 뗀다
     [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        removeImageView.alpha = 0.0;
-        removeImageView.frame = CGRectMake(CGRectGetMinX(removeImageView.frame)
-                                           , CGRectGetMinY(removeImageView.frame) + 10.0
-                                           , CGRectGetWidth(removeImageView.frame)
-                                           , CGRectGetHeight(removeImageView.frame));
+        
+        for (int i=0; i<[self.images count]; i++) {
+            UIImageView *imageView = self.images[i];
+            if (i < index) {
+                continue;
+            }
+            else if (i == index) {
+                imageView.alpha = 0.0;
+                imageView.frame = CGRectMake(CGRectGetMinX(imageView.frame)
+                                                   , CGRectGetMinY(imageView.frame) + 10.0
+                                                   , CGRectGetWidth(imageView.frame)
+                                                   , CGRectGetHeight(imageView.frame));
+        
+            }
+            // 나머지 이미지 이미지의 위치를 재조정
+            else {
+                imageView.frame = CGRectMake(CGRectGetMinX(imageView.frame) - CGRectGetWidth(imageView.frame) - kMARGIN
+                                             , CGRectGetMinY(imageView.frame)
+                                             , CGRectGetWidth(imageView.frame)
+                                             , CGRectGetHeight(imageView.frame));
+            }
+            
+        }
+
+        // 이미지가 없으면 안내 메세지를 출력한다.
         if (self.images.count == 1) {
             _label.alpha = 1;
             _label.transform = CGAffineTransformIdentity;
         }
+        
+        
     } completion:^(BOOL finished) {
+        UIImageView *removeImageView = self.images[index];
         [removeImageView removeFromSuperview];
         [self.images removeObjectAtIndex:index];
+        
         
         UIImageView *lastImageView = [self.images lastObject];
         
@@ -136,7 +158,7 @@
         if (CGRectContainsPoint(imageView.frame, touchPoint)) {
             imageView.layer.borderColor = [[UIColor redColor]CGColor];
             imageView.layer.borderWidth = 1.0;
-            [self.delegate KKImageScrollView:self selectedImageView:imageView];
+            [self.delegate KKImageScrollView:self selectedImage:imageView.image index:[self.images indexOfObject:imageView]];
         }
         else {
             imageView.layer.borderColor = [[UIColor redColor]CGColor];

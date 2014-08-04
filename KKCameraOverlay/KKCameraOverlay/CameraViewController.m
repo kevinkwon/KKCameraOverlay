@@ -70,33 +70,6 @@
 
 
 #pragma mark - Private Method
-- (IBAction)cancelPreviewModeButtonPressed:(UIButton *)sender {
-    NSLog(@"사진추가 버튼 눌림, 촬영을 계속함");
-    
-    NSLog(@"카메라 뷰가 터치됨, 카메라를 원래되로 돌려놈");
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.captureManager.previewLayer.frame = self.previewImageView.frame;
-        self.captureManager.previewLayer.borderWidth = 0;
-        self.captureManager.previewLayer.opacity = 1.0;
-        
-        self.albumButton.transform = CGAffineTransformIdentity;
-        self.captureButton.transform = CGAffineTransformIdentity;
-        self.flashButton.transform = CGAffineTransformIdentity;
-        
-        self.deleteImageButton.transform = CGAffineTransformIdentity;
-        self.cancelPreviewModeButton.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        self.previewMode = NO;
-        self.previewImageView.image = nil;
-        
-        [self.imageScrollView resetImageLayer];
-    }];
-}
-
-- (IBAction)deleteImageButtonPressed:(UIButton *)sender {
-    
-}
-
 - (void)viewTapped:(UITapGestureRecognizer *)gesture
 {
     if (!self.isPreviewMode) {
@@ -171,6 +144,59 @@
     }];
 }
 
+- (void)toggleToPreviewMode:(BOOL)flag
+{
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        // 프리뷰 모드로
+        if (flag) {
+            self.captureManager.previewLayer.frame = CGRectMake(CGRectGetMinX(self.previewImageView.frame)
+                                                                , CGRectGetMaxY(self.previewImageView.frame) - 55
+                                                                , 55
+                                                                , 55);
+
+            self.albumButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
+            self.captureButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
+            self.flashButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
+            
+            self.deleteImageButton.transform = CGAffineTransformMakeTranslation(5.0 + CGRectGetWidth(self.deleteImageButton.frame)
+                                                                                , 0.0);
+            self.cancelPreviewModeButton.transform = CGAffineTransformMakeTranslation(- 5.0f - CGRectGetWidth(self.cancelPreviewModeButton.frame)
+                                                                                      , 0.0);
+        }
+        // 카메라 모드로
+        else {
+            self.captureManager.previewLayer.frame = self.previewImageView.frame;
+            self.captureManager.previewLayer.borderWidth = 0;
+            self.captureManager.previewLayer.opacity = 1.0;
+
+            self.albumButton.transform = CGAffineTransformIdentity;
+            self.captureButton.transform = CGAffineTransformIdentity;
+            self.flashButton.transform = CGAffineTransformIdentity;
+            
+            self.deleteImageButton.transform = CGAffineTransformIdentity;
+            self.cancelPreviewModeButton.transform = CGAffineTransformIdentity;
+        }
+    } completion:^(BOOL finished) {
+        // 프리뷰 모드로
+        if (flag) {
+            
+        }
+        // 카메라 모드로
+        else {
+            self.previewImageView.image = nil;
+            [self.imageScrollView resetImageLayer];
+        }
+    }];
+}
+
+#pragma mark - Public Method
+- (IBAction)cancelPreviewModeButtonPressed:(UIButton *)sender {
+    NSLog(@"사진추가 버튼 눌림, 촬영을 계속함");
+    
+    NSLog(@"카메라 뷰가 터치됨, 카메라를 원래되로 돌려놈");
+    [self toggleToPreviewMode:NO];
+}
+
 - (IBAction)flashButtonPressed:(id)sender {
     [self.captureManager toggleFlashlight];
 }
@@ -178,34 +204,28 @@
 - (IBAction)albumButtonPressed:(id)sender {
 }
 
+- (IBAction)deleteImageButtonPressed:(UIButton *)sender {
+    // 현재 선택된 이미지를 삭제
+    // 아이템에서 이미지 목록 삭제
+    [self.item.images removeObjectAtIndex:self.selectedImageIndex];
 
-#pragma mark - KKImageScrollViewDelegate
-- (void)KKImageScrollView:(KKImageScrollView *)view selectedImageView:(UIImageView *)imageView
+    // 스크롤뷰에서 이미지 삭제
+    [self.imageScrollView removeImageAtIndex:self.selectedImageIndex];
+    
+    // 카메로 모드로 변환
+    [self toggleToPreviewMode:NO];
+}
+
+#pragma mark - KKImageScrollView Delegate Method
+- (void)KKImageScrollView:(KKImageScrollView *)view selectedImage:(UIImage *)image index:(NSInteger)index
 {
     // 이미지를 화면에 보여줌
-    self.previewImageView.image = imageView.image;
+    self.previewImageView.image = image;
+    // 선택된 이미지 인덱스
+    _selectedImageIndex = index;
 
     // 카메라 뷰를 작게 만들어줌
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.captureManager.previewLayer.frame = CGRectMake(CGRectGetMinX(self.previewImageView.frame)
-                                                            , CGRectGetMaxY(self.previewImageView.frame) - 55
-                                                            , 55
-                                                            , 55);
-        self.captureManager.previewLayer.borderColor = [[UIColor whiteColor]CGColor];
-        self.captureManager.previewLayer.borderWidth = 1;
-        self.captureManager.previewLayer.opacity = 0.8;
-        
-        self.albumButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
-        self.captureButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
-        self.flashButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
-        
-        self.deleteImageButton.transform = CGAffineTransformMakeTranslation(5.0 + CGRectGetWidth(self.deleteImageButton.frame)
-                                                                            , 0.0);
-        self.cancelPreviewModeButton.transform = CGAffineTransformMakeTranslation(- 5.0f - CGRectGetWidth(self.cancelPreviewModeButton.frame)
-                                                                                  , 0.0);
-    } completion:^(BOOL finished) {
-        self.previewMode = YES;
-    }];
+    [self toggleToPreviewMode:YES];
 }
 
 @end

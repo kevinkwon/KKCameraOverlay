@@ -11,7 +11,7 @@
 @class KKImageScrollView;
 @protocol KKImageScrollViewDelegate <UIScrollViewDelegate>
 
-- (void)KKImageScrollView:(KKImageScrollView *)view selectedImageView:(UIImageView *)imageView;
+- (void)KKImageScrollView:(KKImageScrollView *)view selectedImage:(UIImage *)image index:(NSInteger)index;
 
 @end
 
