@@ -54,15 +54,8 @@
     // 탭 제스쳐를 추가한다.
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewTapped:)];
     [self.view addGestureRecognizer:singleTap];
-    
-    [self.view addSubview:self.deleteImageButton];
-    self.deleteImageButton.frame = CGRectMake(0, self.view.bounds.size.height - 44, 73, 44);
-    
 }
 
-- (void)imageViewTapped:(UIImageView *)sender {
-    NSLog(@"tab됨");
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -74,6 +67,45 @@
 //- (void)viewDidLayoutSubviews
 //{
 //}
+
+
+#pragma mark - Private Method
+- (IBAction)cancelPreviewModeButtonPressed:(UIButton *)sender {
+    NSLog(@"사진추가 버튼 눌림, 촬영을 계속함");
+    
+    NSLog(@"카메라 뷰가 터치됨, 카메라를 원래되로 돌려놈");
+    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.captureManager.previewLayer.frame = self.previewImageView.frame;
+        self.captureManager.previewLayer.borderWidth = 0;
+        self.captureManager.previewLayer.opacity = 1.0;
+        
+        self.albumButton.transform = CGAffineTransformIdentity;
+        self.captureButton.transform = CGAffineTransformIdentity;
+        self.flashButton.transform = CGAffineTransformIdentity;
+        
+        self.deleteImageButton.transform = CGAffineTransformIdentity;
+        self.cancelPreviewModeButton.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        self.previewMode = NO;
+        self.previewImageView.image = nil;
+        
+        [self.imageScrollView resetImageLayer];
+    }];
+}
+
+- (IBAction)deleteImageButtonPressed:(UIButton *)sender {
+    
+}
+
+- (void)viewTapped:(UITapGestureRecognizer *)gesture
+{
+    if (!self.isPreviewMode) {
+        return;
+    }
+    
+    [self cancelPreviewModeButtonPressed:nil];
+}
+
 
 - (void)nextStep
 {
@@ -156,44 +188,24 @@
     // 카메라 뷰를 작게 만들어줌
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.captureManager.previewLayer.frame = CGRectMake(CGRectGetMinX(self.previewImageView.frame)
-                                                            ,CGRectGetMaxY(self.previewImageView.frame) - 55
+                                                            , CGRectGetMaxY(self.previewImageView.frame) - 55
                                                             , 55
                                                             , 55);
         self.captureManager.previewLayer.borderColor = [[UIColor whiteColor]CGColor];
         self.captureManager.previewLayer.borderWidth = 1;
         self.captureManager.previewLayer.opacity = 0.8;
+        
+        self.albumButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
+        self.captureButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
+        self.flashButton.transform = CGAffineTransformMakeTranslation(0.0, 43.0);
+        
+        self.deleteImageButton.transform = CGAffineTransformMakeTranslation(5.0 + CGRectGetWidth(self.deleteImageButton.frame)
+                                                                            , 0.0);
+        self.cancelPreviewModeButton.transform = CGAffineTransformMakeTranslation(- 5.0f - CGRectGetWidth(self.cancelPreviewModeButton.frame)
+                                                                                  , 0.0);
     } completion:^(BOOL finished) {
         self.previewMode = YES;
     }];
 }
 
-- (void)viewTapped:(UITapGestureRecognizer *)gesture
-{
-    if (!self.isPreviewMode) {
-        return;
-    }
-    
-    [self cancelPreviewModeButtonPressed:nil];
-}
-
-- (IBAction)cancelPreviewModeButtonPressed:(UIButton *)sender {
-    NSLog(@"사진추가 버튼 눌림, 촬영을 계속함");
-    
-    NSLog(@"카메라 뷰가 터치됨, 카메라를 원래되로 돌려놈");
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        self.captureManager.previewLayer.frame = self.previewImageView.frame;
-        self.captureManager.previewLayer.borderWidth = 0;
-        self.captureManager.previewLayer.opacity = 1.0;
-    } completion:^(BOOL finished) {
-        self.previewMode = NO;
-        self.previewImageView.image = nil;
-        
-        [self.imageScrollView resetImageLayer];
-    }];
-
-}
-
-- (IBAction)deleteImageButtonPressed:(UIButton *)sender {
-    
-}
 @end
