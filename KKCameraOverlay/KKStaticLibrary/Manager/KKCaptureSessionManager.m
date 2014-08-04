@@ -202,4 +202,35 @@
 	});
 }
 
+- (void)toggleFlashlight
+{
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    if (device.torchMode == AVCaptureTorchModeOff || device.torchMode == AVCaptureTorchModeAuto)
+    {
+        // Start session configuration
+        [self.captureSession beginConfiguration];
+        [device lockForConfiguration:nil];
+        
+        // Set torch to on
+        [device setTorchMode:AVCaptureTorchModeOn];
+        
+        [device unlockForConfiguration];
+        [self.captureSession commitConfiguration];
+    }
+    else
+    {
+        // Start session configuration
+        [self.captureSession beginConfiguration];
+        [device lockForConfiguration:nil];
+        
+        // Set torch to on
+        [device setTorchMode:AVCaptureTorchModeOff];
+        
+        [device unlockForConfiguration];
+        [self.captureSession commitConfiguration];
+
+    }
+}
+
 @end

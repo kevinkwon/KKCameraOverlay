@@ -140,6 +140,7 @@
 }
 
 - (IBAction)flashButtonPressed:(id)sender {
+    [self.captureManager toggleFlashlight];
 }
 
 - (IBAction)albumButtonPressed:(id)sender {

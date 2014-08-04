@@ -25,6 +25,6 @@ typedef void (^KKCaptureSessionManagerDidCaptureSuccess_t)(UIImage *image);
 - (void)addVideoInputFrontCamera:(BOOL)front;
 
 - (void)switchCamera;
-
+- (void)toggleFlashlight;
 
 @end
